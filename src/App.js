@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Toast from './components/Toast';
 
-function App() {
+const App = () => {
+  const [show, setShow] = useState(false);
+
+  const showToast = () => {
+    setShow(true);
+  };
+
+  const hideToast = () => {
+    setShow(false);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Toast show={show} hideToast={hideToast}>
+        This is some text
+      </Toast>
+      <a href="/#" onClick={showToast} className={`${show && 'disabled'}`}>
+        Show Toast
+      </a>
     </div>
   );
-}
+};
 
 export default App;
